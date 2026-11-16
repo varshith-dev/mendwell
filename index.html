@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mendwell: demo video and deck</title>
+<meta name="description" content="Mendwell ranks hand pumps by chance of failure and plans the repair crew's day. Xylem Global Student Innovation Challenge 2026, Water Access.">
+<meta property="og:title" content="Mendwell: demo video and deck">
+<meta property="og:image" content="poster.jpg">
+<style>
+  :root{--ink:#0e1f26;--paper:#f4eee1;--accent:#e84a26;--muted:#5b6b70}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  main{max-width:960px;margin:0 auto;padding:48px 20px 64px}
+  .eyebrow{font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  h1{font:700 clamp(36px,6vw,60px)/1.05 Georgia,"Times New Roman",serif;margin:14px 0 12px;letter-spacing:-.01em}
+  h1 span{color:var(--accent)}
+  p.lead{max-width:640px;color:#2b3b41;margin:0 0 28px}
+  video{display:block;width:100%;aspect-ratio:16/9;background:var(--ink);border-radius:10px;box-shadow:0 10px 30px rgba(14,31,38,.25)}
+  .meta{margin:10px 0 0;color:var(--muted);font-size:14px}
+  .links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:32px 0}
+  .links a{display:block;padding:16px 18px;border:1px solid #cfc7b4;border-radius:10px;color:var(--ink);text-decoration:none;background:#fbf8f0}
+  .links a:hover,.links a:focus-visible{border-color:var(--accent);outline:none}
+  .links b{display:block}.links small{color:var(--muted)}
+  footer{color:var(--muted);font-size:14px;border-top:1px solid #cfc7b4;padding-top:16px}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Xylem Global Student Innovation Challenge 2026 · Water Access · University track</div>
+  <h1>Mend<span>well</span></h1>
+  <p class="lead">Which broken hand pump should the repair crew fix first? Mendwell ranks about 35,500 real pumps by chance of failure, plans one crew's day to reach the most people, and lets villagers report a pump with a QR code and two taps.</p>
+  <video controls preload="metadata" poster="poster.jpg" playsinline>
+    <source src="mendwell-demo.mp4" type="video/mp4">
+    Your browser can't play this video. <a href="mendwell-demo.mp4">Download the MP4</a>.
+  </video>
+  <p class="meta">Narrated demo, 3 min. <a href="mendwell-demo.mp4">Direct MP4 link</a>.</p>
+  <div class="links">
+    <a href="Mendwell_Xylem2026.pdf"><b>Slide deck (PDF)</b><small>The Mendwell pitch deck</small></a>
+    <a href="https://github.com/varshith-dev/mendwell"><b>Source code</b><small>github.com/varshith-dev/mendwell, MIT</small></a>
+  </div>
+  <footer>Varshith Paladugu, solo entrant. B.Tech Data Science, Malla Reddy University, Hyderabad. Data: WPdx+ from the Water Point Data Exchange. Survey years are 2009 and 2016, so scores are estimates, not today's pump status.</footer>
+</main>
+</body>
+</html>
