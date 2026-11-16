@@ -8,6 +8,10 @@ Mendwell does three jobs:
 2. **Plan.** It builds one technician's day: which pumps to visit and in what order, so the most people get water back before the shift ends.
 3. **Report.** A villager scans a QR sticker on the pump and reports it in two taps. No app, no account. Reports move the pump's score and the next day's plan.
 
+**Live demo:** https://mendwell-pearl.vercel.app (sign in as `officer@mendwell.demo` or `tech@mendwell.demo`, password `mendwell-demo`)  
+**Code:** https://github.com/varshith-dev/mendwell  
+**Demo video and slide deck:** https://varshith-dev.github.io/mendwell/
+
 Screenshots are in `docs/screenshots`. The demo video script and project page text are in `docs/`.
 
 ![Dispatch planner](docs/screenshots/dispatch-desktop.png)

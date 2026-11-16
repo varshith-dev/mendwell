@@ -1,6 +1,6 @@
 # Project page text (paste into the platform)
 
-Field names follow the form seen on public projects. Check each field against the live form when you open it. Fill in the bracketed items once they exist.
+Field names follow the form seen on public projects. Check each field against the live form when you open it.
 
 ## Project title
 Mendwell
@@ -32,8 +32,9 @@ Results, Sierra Leone: a crew guided by Mendwell reaches about 2,500 people per 
 
 We also report what does not work well. The model alone is modest (AUC 0.68 in Sierra Leone, 0.73 in Uganda). Most of the gain comes from picking busy pumps and routing well, not from the model. A model trained in one country does not carry over to the other (AUC 0.52). We found and removed a data leak that had inflated our first model to 0.99. All of this is on the app's Evidence page.
 
-Live demo: [Vercel URL once deployed]
-Code: [GitHub URL once pushed]
+Live demo: https://mendwell-pearl.vercel.app
+Code: https://github.com/varshith-dev/mendwell
+Demo video and slide deck: https://varshith-dev.github.io/mendwell/
 Demo logins are on the README.
 
 ## How it works
@@ -53,7 +54,7 @@ Varshith Paladugu, solo entrant. Second year B.Tech in Data Science (2025 to 202
 No teachers or mentors helped. I used AI coding assistants for development help (writing and reviewing code). The datasets are WPdx+ from the Water Point Data Exchange (https://data.waterpointdata.org, dataset eqje-vguj), cited in the app and README. The libraries are open source.
 
 ## Video field ("3-Minute Video Presentation & Demo Link")
-[Public YouTube or Drive link]. Max 1,000 characters. Narrated and demonstrated, as the form requires.
+https://varshith-dev.github.io/mendwell/mendwell-demo.mp4 (page with player and deck: https://varshith-dev.github.io/mendwell/). Max 1,000 characters. Narrated and demonstrated, as the form requires.
 
 ## Slide outline (public Google Slides link or PDF)
 1. Title: Mendwell. Water Access, University track. Varshith Paladugu.
