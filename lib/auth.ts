@@ -1,12 +1,20 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { createHash } from "node:crypto";
 import { SignJWT, jwtVerify } from "jose";
 import { db } from "./db";
 
 const COOKIE = "mendwell_session";
+// Demo deploy without manual env vars: when AUTH_SECRET is not set in production, derive a
+// stable secret from the database URL (which only the project owns) plus a fixed salt.
+// Fine for a demo with public demo accounts. Set AUTH_SECRET for anything real.
 const secret = () => {
-  const v = process.env.AUTH_SECRET;
-  if (!v && process.env.NODE_ENV === "production") throw new Error("AUTH_SECRET is not set");
+  let v = process.env.AUTH_SECRET;
+  if (!v && process.env.NODE_ENV === "production") {
+    const base = process.env.DATABASE_URL ?? process.env.POSTGRES_URL;
+    if (!base) throw new Error("Set AUTH_SECRET or DATABASE_URL");
+    v = createHash("sha256").update(`${base}|mendwell-demo-auth-salt-v1`).digest("hex");
+  }
   return new TextEncoder().encode(v ?? "dev-only-secret-change-me-in-production-0000");
 };
 

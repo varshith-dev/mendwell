@@ -24,6 +24,15 @@ function mulberry32(a: number) {
 
 async function main() {
   const pts: P[] = JSON.parse(fs.readFileSync(path.join(__dirname, "../data/points.json"), "utf8"));
+
+  if (process.argv.includes("--if-empty")) {
+    const [pumpCount, demoRoute] = await Promise.all([prisma.pump.count(), prisma.route.findUnique({ where: { id: "demo-route" } })]);
+    if (pumpCount > 0 && demoRoute) {
+      console.log(`already seeded (${pumpCount} pumps), skipping`);
+      return;
+    }
+    if (pumpCount > 0) console.log("found an incomplete seed (no demo route), starting over");
+  }
   console.log("seeding", pts.length, "pumps");
 
   await prisma.stop.deleteMany();

@@ -164,23 +164,30 @@ What this says, and what it does not:
 | **Challenge fit and feasibility** | Water Access, reliability of existing services. It runs end to end with a real database, auth and roles, and open data. Every claim has a test on real outcomes, assumptions are stated, and the limits section below says what is not proven. Hosting needs only free tiers. |
 | **Innovation** | Triage of the repair crew's day, not another sensor. People-weighted dispatch, a no-account reporting path that feeds the plan, spatial-block validation, a published leakage audit, and a replay design that keeps the answer hidden from the planner. |
 
-## Deploy (Vercel + Neon, free tiers)
+## Deploy (Vercel + Neon, free tiers, no manual secrets)
 
-Environment variables (two only):
+One click path:
 
-| Name | Value |
+1. In Vercel, import the GitHub repo `varshith-dev/mendwell` (framework Next.js, no settings to change; `vercel.json` sets the build command).
+2. Open **Storage**, add **Neon Postgres** from the Marketplace and connect it to the project. The integration injects `DATABASE_URL` (pooled), `DATABASE_URL_UNPOOLED` (direct) and the `POSTGRES_*` variables.
+3. Deploy (or redeploy). Done. Sign in as `officer@mendwell.demo` (password `mendwell-demo`).
+
+What the build does (`npm run vercel-build`, see `scripts/db-prepare.mjs`):
+
+- `prisma db push` using the direct URL (`DATABASE_URL_UNPOOLED`, falling back to `DATABASE_URL`) to create or update the tables.
+- Seeds about 35,500 pumps, the two demo users, simulated reports and a demo route, **only if the database is empty**. It uses batched inserts of 1,000 rows and takes a few seconds, far inside Vercel's 45 minute build limit. Later builds see the data and skip the seed, so they never wipe anything. (If a seed was cut off before the demo route existed, the next build starts it over.)
+- If no database variable exists at all, it prints a warning and skips, so the first deploy still succeeds. Add Neon and redeploy.
+- At runtime, a Neon pooled URL gets `pgbouncer=true` added automatically.
+
+Environment variables:
+
+| Name | Needed? |
 |---|---|
-| `DATABASE_URL` | Neon connection string, ending in `?sslmode=require`. Use the pooled string on Vercel. Use the direct (non-pooled) string for the one-time seed below. |
-| `AUTH_SECRET` | A random string of at least 32 characters, for example `openssl rand -base64 48`. |
+| `DATABASE_URL` | Injected by the Neon integration. For another Postgres, use any connection string. |
+| `DATABASE_URL_UNPOOLED` | Optional. Injected by Neon. Used for the schema push and the seed. |
+| `AUTH_SECRET` | Optional. At least 32 random characters. If it is missing in production, the app derives a secret from a SHA-256 of `DATABASE_URL` plus a fixed salt. That is acceptable for this demo (the demo accounts are public) but set `AUTH_SECRET` for anything real. |
 
-Steps:
-
-1. Create a Neon project (free tier) and copy the connection strings.
-2. From your machine, once: `DATABASE_URL="<direct string>" npm run setup`. This creates the tables and seeds about 35,500 pumps, the two demo users and a demo route. The seed wipes the tables first, so run it only on this demo database.
-3. In Vercel, import the GitHub repo (framework: Next.js, no build command changes). Add `DATABASE_URL` (pooled) and `AUTH_SECRET`. Deploy.
-4. Open the site, sign in as `officer@mendwell.demo` (password `mendwell-demo`) and check the board loads.
-
-`postinstall` runs `prisma generate`, so Vercel builds the PostgreSQL client without extra setup.
+Manual route: set the variables above on any Postgres and run `npm run build` (or `npm run vercel-build`). `npm run setup` is the local, destructive variant: it wipes and reseeds.
 
 ## Limits
 

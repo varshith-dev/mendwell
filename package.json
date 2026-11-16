@@ -13,7 +13,8 @@
     "backtest": "tsx scripts/backtest.ts",
     "postinstall": "prisma generate",
     "demo:sqlite": "node scripts/local-sqlite.mjs",
-    "db:seed": "tsx prisma/seed.ts"
+    "db:seed": "tsx prisma/seed.ts",
+    "vercel-build": "node scripts/db-prepare.mjs && next build"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
