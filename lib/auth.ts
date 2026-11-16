@@ -4,7 +4,11 @@ import { SignJWT, jwtVerify } from "jose";
 import { db } from "./db";
 
 const COOKIE = "mendwell_session";
-const secret = () => new TextEncoder().encode(process.env.AUTH_SECRET ?? "dev-only-secret-change-me-in-production-0000");
+const secret = () => {
+  const v = process.env.AUTH_SECRET;
+  if (!v && process.env.NODE_ENV === "production") throw new Error("AUTH_SECRET is not set");
+  return new TextEncoder().encode(v ?? "dev-only-secret-change-me-in-production-0000");
+};
 
 export type Session = { id: string; email: string; name: string; role: "officer" | "technician" };
 
