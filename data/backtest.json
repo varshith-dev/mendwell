@@ -1,0 +1,230 @@
+{
+ "generated_at": "2026-11-16T03:00:54.412Z",
+ "shift_hours": 8,
+ "assumptions": {
+  "shiftHours": 8,
+  "speedKmh": 20,
+  "detour": 1.4,
+  "checkHours": 0.3,
+  "repairHours": 1.5,
+  "radiusKm": 30,
+  "partsCost": 18,
+  "report_accuracy": 0.85,
+  "report_coverage": 0.05,
+  "note": "speed, check and repair times are assumptions, see sensitivity"
+ },
+ "countries": {
+  "sierra_leone": {
+   "depots_simulated": 220,
+   "pumps": 10928,
+   "base_rate": 0.26784407027818447,
+   "reported_pumps": 540,
+   "variants": {
+    "nearest": {
+     "label": "Nearest pump first (no data)",
+     "pumps_visited": 8.877272727272727,
+     "repairs_per_shift": 1.9636363636363636,
+     "repairs_se": 0.0760204804545126,
+     "people_per_shift": 828.1318181818182,
+     "people_se": 61.08303439122453,
+     "km_per_shift": 7.65375934466727
+    },
+    "random": {
+     "label": "Random order (no data)",
+     "pumps_visited": 3.536363636363636,
+     "repairs_per_shift": 0.8181818181818182,
+     "repairs_se": 0.04377045513013347,
+     "people_per_shift": 399.6409090909091,
+     "people_se": 34.83466101593954,
+     "km_per_shift": 64.92415357491137
+    },
+    "risk": {
+     "label": "Highest risk first (model, ignores distance)",
+     "pumps_visited": 3.3454545454545452,
+     "repairs_per_shift": 1.3227272727272728,
+     "repairs_se": 0.05642342203792963,
+     "people_per_shift": 2039.668181818182,
+     "people_se": 132.46706910105866,
+     "km_per_shift": 44.32309212585753
+    },
+    "planner_noModel": {
+     "label": "Planner without the model (people served only)",
+     "pumps_visited": 7.295454545454546,
+     "repairs_per_shift": 1.6318181818181818,
+     "repairs_se": 0.06667691819501695,
+     "people_per_shift": 2273.759090909091,
+     "people_se": 135.58019372463465,
+     "km_per_shift": 25.374380630627147
+    },
+    "planner": {
+     "label": "Mendwell planner (model risk)",
+     "pumps_visited": 6.386363636363637,
+     "repairs_per_shift": 1.7954545454545454,
+     "repairs_se": 0.06424955454478745,
+     "people_per_shift": 2526.2545454545457,
+     "people_se": 143.541576444926,
+     "km_per_shift": 28.059626964606593
+    },
+    "planner_pumps": {
+     "label": "Mendwell planner, objective = most pumps fixed",
+     "pumps_visited": 6.890909090909091,
+     "repairs_per_shift": 2.422727272727273,
+     "repairs_se": 0.05886080436086062,
+     "people_per_shift": 989.6681818181818,
+     "people_se": 60.55966438103546,
+     "km_per_shift": 14.804552701583079
+    },
+    "planner_pumps_noModel": {
+     "label": "Planner (pumps objective) without the model",
+     "pumps_visited": 8.89090909090909,
+     "repairs_per_shift": 1.959090909090909,
+     "repairs_se": 0.07668652221679495,
+     "people_per_shift": 838.6045454545455,
+     "people_se": 61.157789181689964,
+     "km_per_shift": 11.958749248352134
+    },
+    "planner_reports": {
+     "label": "Mendwell planner + community reports",
+     "pumps_visited": 6.3,
+     "repairs_per_shift": 1.8681818181818182,
+     "repairs_se": 0.06510913798950989,
+     "people_per_shift": 2822.8727272727274,
+     "people_se": 159.3427576970581,
+     "km_per_shift": 26.925352795467646
+    },
+    "oracle": {
+     "label": "Upper bound: planner that knows every status",
+     "pumps_visited": 4.5636363636363635,
+     "repairs_per_shift": 2.8454545454545452,
+     "repairs_se": 0.03982021957878662,
+     "people_per_shift": 4441.213636363636,
+     "people_se": 182.67616160795558,
+     "km_per_shift": 24.61977043753901
+    }
+   },
+   "speed_sensitivity": [
+    {
+     "speed": 12,
+     "planner": 1.525,
+     "nearest": 2.0125
+    },
+    {
+     "speed": 20,
+     "planner": 1.7,
+     "nearest": 2.075
+    },
+    {
+     "speed": 30,
+     "planner": 1.8625,
+     "nearest": 2.1
+    }
+   ]
+  },
+  "uganda": {
+   "depots_simulated": 220,
+   "pumps": 24574,
+   "base_rate": 0.18853259542606007,
+   "reported_pumps": 1216,
+   "variants": {
+    "nearest": {
+     "label": "Nearest pump first (no data)",
+     "pumps_visited": 9.827272727272728,
+     "repairs_per_shift": 1.5136363636363637,
+     "repairs_se": 0.08015469172518672,
+     "people_per_shift": 879.1818181818181,
+     "people_se": 90.53661794312852,
+     "km_per_shift": 13.892439288502551
+    },
+    "random": {
+     "label": "Random order (no data)",
+     "pumps_visited": 3.4272727272727272,
+     "repairs_per_shift": 0.5363636363636364,
+     "repairs_se": 0.0413384266107291,
+     "people_per_shift": 316.55454545454546,
+     "people_se": 38.61125396509838,
+     "km_per_shift": 69.96962596568116
+    },
+    "risk": {
+     "label": "Highest risk first (model, ignores distance)",
+     "pumps_visited": 3.9454545454545453,
+     "repairs_per_shift": 0.6772727272727272,
+     "repairs_se": 0.05493917817252077,
+     "people_per_shift": 1405.4409090909091,
+     "people_se": 124.9376970545139,
+     "km_per_shift": 60.25554150885891
+    },
+    "planner_noModel": {
+     "label": "Planner without the model (people served only)",
+     "pumps_visited": 8.263636363636364,
+     "repairs_per_shift": 1.231818181818182,
+     "repairs_se": 0.06510913798950987,
+     "people_per_shift": 1855.05,
+     "people_se": 129.75447797572193,
+     "km_per_shift": 33.08103421175016
+    },
+    "planner": {
+     "label": "Mendwell planner (model risk)",
+     "pumps_visited": 8.14090909090909,
+     "repairs_per_shift": 1.190909090909091,
+     "repairs_se": 0.06363341197404906,
+     "people_per_shift": 1933.0954545454545,
+     "people_se": 137.3169775905982,
+     "km_per_shift": 37.616416148929105
+    },
+    "planner_pumps": {
+     "label": "Mendwell planner, objective = most pumps fixed",
+     "pumps_visited": 9.65,
+     "repairs_per_shift": 1.5772727272727274,
+     "repairs_se": 0.07628870290438775,
+     "people_per_shift": 831.0681818181819,
+     "people_se": 87.64820011273196,
+     "km_per_shift": 21.43296452572953
+    },
+    "planner_pumps_noModel": {
+     "label": "Planner (pumps objective) without the model",
+     "pumps_visited": 9.909090909090908,
+     "repairs_per_shift": 1.4181818181818182,
+     "repairs_se": 0.07653758228889651,
+     "people_per_shift": 786.3727272727273,
+     "people_se": 79.41930457242651,
+     "km_per_shift": 19.068575901746488
+    },
+    "planner_reports": {
+     "label": "Mendwell planner + community reports",
+     "pumps_visited": 7.818181818181818,
+     "repairs_per_shift": 1.259090909090909,
+     "repairs_se": 0.062362546071475525,
+     "people_per_shift": 1922.909090909091,
+     "people_se": 131.56990334634472,
+     "km_per_shift": 37.30908185045197
+    },
+    "oracle": {
+     "label": "Upper bound: planner that knows every status",
+     "pumps_visited": 4.468181818181818,
+     "repairs_per_shift": 2.6636363636363636,
+     "repairs_se": 0.039914446448770825,
+     "people_per_shift": 4054.85,
+     "people_se": 144.85973181619346,
+     "km_per_shift": 32.39357699004319
+    }
+   },
+   "speed_sensitivity": [
+    {
+     "speed": 12,
+     "planner": 1.1125,
+     "nearest": 1.4625
+    },
+    {
+     "speed": 20,
+     "planner": 1.3375,
+     "nearest": 1.575
+    },
+    {
+     "speed": 30,
+     "planner": 1.5,
+     "nearest": 1.6375
+    }
+   ]
+  }
+ }
+}

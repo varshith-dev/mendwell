@@ -1,0 +1,94 @@
+// PostgreSQL (Neon on Vercel). The schema uses only portable types (String, Int, Float,
+// Boolean, DateTime, no enums or Json), so the same models also run on SQLite for a
+// zero-setup local demo: `npm run demo:sqlite` builds a SQLite copy of this file at
+// prisma/.sqlite/schema.prisma and never touches this one.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  role         String   @default("officer") // officer | technician
+  passwordHash String
+  createdAt    DateTime @default(now())
+  routes       Route[]
+}
+
+model Pump {
+  id          String   @id // WPdx id, e.g. 7CHM3H7C+CQ
+  country     String   // sierra_leone | uganda
+  lat         Float
+  lon         Float
+  adm1        String
+  adm2        String
+  adm3        String?
+  tech        String
+  management  String
+  source      String
+  installYear Int?
+  served      Int
+  /// Census status. Held back from the planner; revealed when a technician arrives (demo replay).
+  broken      Boolean
+  /// Out-of-fold model probability that the pump is broken. See ml/train.py.
+  risk        Float
+  surveyYear  Int
+  reports     Report[]
+  stops       Stop[]
+
+  @@index([country, adm1, adm2])
+  @@index([country, lat, lon])
+}
+
+model Report {
+  id        String   @id @default(cuid())
+  pumpId    String
+  pump      Pump     @relation(fields: [pumpId], references: [id])
+  kind      String   // broken | working | low_flow
+  note      String?
+  simulated Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([pumpId, createdAt])
+}
+
+model Route {
+  id               String   @id @default(cuid())
+  createdById      String
+  createdBy        User     @relation(fields: [createdById], references: [id])
+  country          String
+  depotLat         Float
+  depotLon         Float
+  objective        String   // people | pumps
+  params           String   // JSON string of PlanParams
+  expectedRepairs  Float
+  expectedPeople   Float
+  expectedHours    Float
+  totalKm          Float
+  status           String   @default("planned") // planned | in_progress | done
+  createdAt        DateTime @default(now())
+  stops            Stop[]
+}
+
+model Stop {
+  id          String    @id @default(cuid())
+  routeId     String
+  route       Route     @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  pumpId      String
+  pump        Pump      @relation(fields: [pumpId], references: [id])
+  seq         Int
+  legKm       Float
+  arriveHours Float
+  belief      Float
+  outcome     String?   // fixed | working | needs_parts | not_found
+  note        String?
+  visitedAt   DateTime?
+
+  @@index([routeId, seq])
+}

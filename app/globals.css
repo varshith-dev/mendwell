@@ -1,0 +1,173 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-heading: "Fraunces Variable", ui-serif, Georgia, serif;
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-lake: var(--lake);
+  --color-lake-soft: var(--lake-soft);
+  --color-signal: var(--signal);
+  --color-ochre: var(--ochre);
+  --color-moss: var(--moss);
+  --color-night: var(--night);
+  --color-night-2: var(--night-2);
+  --color-rule: var(--rule);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+
+/* ------------------------------------------------------------------
+   Mendwell design system
+   Concept: a hydrographic field chart. Warm survey paper, ink, a deep lake blue,
+   and one loud signal colour that only ever means "broken".
+   Type: Fraunces for headlines, Instrument Sans for UI, JetBrains Mono for readings.
+------------------------------------------------------------------- */
+:root {
+  --paper: #f3eee2;
+  --paper-2: #e9e2d0;
+  --ink: #0f222b;
+  --ink-2: #3b5560;
+  --lake: #0d5c7a;
+  --lake-soft: #cfe3e8;
+  --signal: #e2491f;
+  --ochre: #d89a2b;
+  --moss: #2e8a63;
+  --night: #0a1a21;
+  --night-2: #12303b;
+  --rule: color-mix(in oklab, var(--ink) 16%, transparent);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #faf6ec;
+  --card-foreground: var(--ink);
+  --popover: #faf6ec;
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-2);
+  --muted-foreground: #5a6d74;
+  --accent: var(--lake-soft);
+  --accent-foreground: var(--ink);
+  --destructive: var(--signal);
+  --border: color-mix(in oklab, var(--ink) 16%, transparent);
+  --input: color-mix(in oklab, var(--ink) 22%, transparent);
+  --ring: var(--lake);
+  --chart-1: var(--lake);
+  --chart-2: var(--signal);
+  --chart-3: var(--ochre);
+  --chart-4: var(--moss);
+  --chart-5: var(--ink-2);
+  --radius: 0.5rem;
+  --sidebar: var(--paper-2);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--lake-soft);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--rule);
+  --sidebar-ring: var(--lake);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { @apply font-sans antialiased; font-feature-settings: "ss01", "cv11"; }
+  body {
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(1200px 600px at 100% -10%, color-mix(in oklab, var(--lake) 9%, transparent), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, color-mix(in oklab, var(--ochre) 10%, transparent), transparent 60%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, .display {
+    font-family: var(--font-display);
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+    letter-spacing: -0.02em;
+    font-weight: 560;
+    text-wrap: balance;
+  }
+  ::selection { background: color-mix(in oklab, var(--signal) 30%, transparent); }
+}
+
+@layer components {
+  /* A reading: monospaced, tabular, small caps label above a big number. */
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .reading { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .fig-rule {
+    background-image: repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 8px);
+    height: 6px; opacity: 0.35;
+  }
+  .paper-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    box-shadow: 0 1px 0 color-mix(in oklab, var(--ink) 6%, transparent), 0 14px 30px -22px color-mix(in oklab, var(--ink) 55%, transparent);
+  }
+  .night-panel {
+    background: radial-gradient(900px 500px at 70% 0%, #12303b 0%, var(--night) 70%);
+    color: #d6e7ea;
+    border: 1px solid #1d4452;
+    border-radius: 12px;
+  }
+  .tick-bg {
+    background-image:
+      linear-gradient(var(--rule) 1px, transparent 1px),
+      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
